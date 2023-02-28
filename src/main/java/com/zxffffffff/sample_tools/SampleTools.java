@@ -54,7 +54,7 @@ public class SampleTools {
      *
      * @return 64位id
      */
-    public static long createSnowFlakeID() {
+    public static long generateSnowFlakeID() {
         return singleton().idWorker.nextId();
     }
 

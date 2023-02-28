@@ -29,15 +29,22 @@
 		</dependency>
 
 		<dependency>
+			<!-- mysql驱动，运行时使用 -->
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<!-- 只有在运行期才需要使用驱动 -->
 			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
+			<!-- 数据库连接池 -->
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
+		</dependency>
+
+		<dependency>
+			<!-- 广泛使用的扩展库 -->
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
 		</dependency>
 	</dependencies>
 
