@@ -55,12 +55,13 @@ public class SampleMySQL {
         }
 
         // [1] 检查user是否存在
-        String sql = "SELECT * FROM user_base_info WHERE user_name=? or user_email=? or user_phone=?";
+        String sql = "SELECT id FROM user_account_pwd WHERE user_name=? or user_email=? or user_phone=?";
         try (Connection conn = this.dataSource.getConnection()) {
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                ps.setObject(1, user_name, Types.VARCHAR); // 注意：索引从1开始
-                ps.setObject(2, user_email, Types.VARCHAR);
-                ps.setObject(3, user_phone, Types.VARCHAR);
+                int index = 1; // 注意：索引从1开始
+                ps.setString(index++, user_name);
+                ps.setString(index++, user_email);
+                ps.setString(index, user_phone);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
                         throw new RuntimeException("user name/email/phone exists");
@@ -72,19 +73,23 @@ public class SampleMySQL {
         }
 
         // [2] 插入user
-        sql = "INSERT INTO user_base_info (uk_user_id, user_password, user_name, user_phone, user_email) VALUES (?,?,?,?,?);";
-        long uk_user_id = SampleTools.createSnowFlakeID();
+        sql = "INSERT INTO user_account_pwd (create_time,update_time,user_id,user_password,user_name,user_phone,user_email) VALUES (?,?,?,?,?,?,?);";
+        long user_id = SampleTools.createSnowFlakeID();
         String user_password = SampleTools.getSaltPassword(user_pwd_md5);
+        java.util.Date date = new Date(System.currentTimeMillis());
         try (Connection conn = this.dataSource.getConnection()) {
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                ps.setObject(1, uk_user_id, Types.BIGINT); // 注意：索引从1开始
-                ps.setObject(2, user_password, Types.CHAR);
-                ps.setObject(3, user_name, Types.VARCHAR);
-                ps.setObject(4, user_phone, Types.VARCHAR);
+                int index = 1; // 注意：索引从1开始
+                ps.setTimestamp(index++, new java.sql.Timestamp(date.getTime()));
+                ps.setTimestamp(index++, new java.sql.Timestamp(date.getTime()));
+                ps.setLong(index++, user_id);
+                ps.setString(index++, user_password);
+                ps.setString(index++, user_name);
+                ps.setString(index++, user_phone);
                 if (user_email.isEmpty())
-                    ps.setNull(5, Types.VARCHAR);
+                    ps.setNull(index, Types.VARCHAR);
                 else
-                    ps.setObject(5, user_email, Types.VARCHAR);
+                    ps.setString(index, user_email);
                 int ret = ps.executeUpdate();
                 if (ret != 1) {
                     throw new RuntimeException("insert err");
@@ -94,7 +99,7 @@ public class SampleMySQL {
             throw new RuntimeException(e);
         }
 
-        return uk_user_id;
+        return user_id;
     }
 
     /** 登陆
@@ -109,7 +114,7 @@ public class SampleMySQL {
         }
 
         // [1] 判断类型
-        String sql = "SELECT uk_user_id FROM user_base_info WHERE user_password=? AND ";
+        String sql = "SELECT user_id FROM user_account_pwd WHERE user_password=? AND ";
         if (SampleTools.checkIsValidMail(user_name_email_phone)) {
             sql += "user_email=?;";
         } else if (SampleTools.checkIsValidPhone(user_name_email_phone)) {
@@ -124,8 +129,9 @@ public class SampleMySQL {
         try {
             try (Connection conn = this.dataSource.getConnection()) {
                 try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                    ps.setObject(1, user_password, Types.CHAR); // 注意：索引从1开始
-                    ps.setObject(2, user_name_email_phone, Types.VARCHAR);
+                    int index = 1; // 注意：索引从1开始
+                    ps.setString(index++, user_password);
+                    ps.setString(index, user_name_email_phone);
                     try (ResultSet rs = ps.executeQuery()) {
                         if (rs.next()) {
                             return rs.getLong(1);
@@ -148,7 +154,7 @@ public class SampleMySQL {
      * delete   DML 删表行，配合where使用，可回滚
      */
     public void forceDeleteUserDB() {
-        String sql = "TRUNCATE user_base_info;";
+        String sql = "TRUNCATE user_account_pwd;";
         try (Connection conn = this.dataSource.getConnection()) {
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.executeUpdate();
