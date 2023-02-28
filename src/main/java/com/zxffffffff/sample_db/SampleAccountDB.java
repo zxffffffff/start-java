@@ -1,3 +1,11 @@
+/****************************************************************************
+ ** MIT License
+ **
+ ** Author	: xiaofeng.zhu
+ ** Support	: zxffffffff@outlook.com, 1337328542@qq.com
+ **
+ ****************************************************************************/
+
 package com.zxffffffff.sample_db;
 
 import com.zxffffffff.sample_tools.SampleTools;
@@ -33,6 +41,8 @@ public class SampleAccountDB extends SampleMySQL {
             throw new RuntimeException("invalid password MD5");
         }
 
+        // todo info
+
         // [1] 检查user是否存在
         try (Connection conn = this.dataSource.getConnection()) {
             String sql = "SELECT id FROM user_account_pwd WHERE user_name=? or user_email=? or user_phone=?;";
@@ -58,11 +68,11 @@ public class SampleAccountDB extends SampleMySQL {
             try (PreparedStatement pst = conn.prepareStatement(sql)) {
                 user_id = SampleTools.generateSnowFlakeID();
                 String user_password = SampleTools.getSaltPassword(user_pwd_md5);
-                java.util.Date date = new Date(System.currentTimeMillis());
+                long dt = System.currentTimeMillis();
 
                 int index = 1; // 注意：索引从1开始
-                pst.setTimestamp(index++, new java.sql.Timestamp(date.getTime()));
-                pst.setTimestamp(index++, new java.sql.Timestamp(date.getTime()));
+                pst.setTimestamp(index++, new java.sql.Timestamp(dt));
+                pst.setTimestamp(index++, new java.sql.Timestamp(dt));
                 pst.setLong(index++, user_id);
                 pst.setString(index++, user_password);
                 pst.setString(index++, user_name);
