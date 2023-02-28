@@ -9,7 +9,7 @@ public class SampleMySQLTests {
 
     @Test
     void testAccountPwd() {
-        sample.forceDeleteUserDB();
+        sample.truncateTable("user_account_pwd");
 
         /* # id, create_time, update_time, user_id, user_password, user_name, user_phone, user_email
         '1', '2023-02-28 10:39:53', '2023-02-28 10:39:53', '1080076870352891904', '70...6', 'zxffff0000', '13000000000', 'zxffff0000@qq.com'

@@ -149,12 +149,12 @@ public class SampleMySQL {
 
     /**
      * 清空表，用于测试
-     * drop     DDL 删表数据+表结构
-     * truncate DDL 删表数据，保留表结构
-     * delete   DML 删表行，配合where使用，可回滚
+     * drop     DDL 删表
+     * truncate DDL 清空数据，自增归零
+     * delete   DML 删数据，配合where使用，可回滚
      */
-    public void forceDeleteUserDB() {
-        String sql = "TRUNCATE user_account_pwd;";
+    public void truncateTable(String table) {
+        String sql =  String.format("TRUNCATE %s;", table);
         try (Connection conn = this.dataSource.getConnection()) {
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.executeUpdate();
