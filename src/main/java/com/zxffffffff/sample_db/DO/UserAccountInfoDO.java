@@ -24,13 +24,6 @@ public record UserAccountInfoDO(long user_id, String nickname, Sex sex, int age,
     /**
      * 注册参数
      */
-    static public UserAccountInfoDO forSignup(String nickname) {
-        return new UserAccountInfoDO(0, nickname, Sex.Undefined, -1, "");
-    }
-
-    /**
-     * 注册参数
-     */
     static public UserAccountInfoDO forSignup(String nickname, Sex sex, int age, String industry) {
         return new UserAccountInfoDO(0, nickname, sex, age, industry);
     }

@@ -17,6 +17,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
+/*
+
+chat_contacts_add
+# id, create_time, update_time, user_id, contact_user_id, add_msg, add_status
+1, 2023-02-28 19:35:32, 2023-02-28 19:35:32, 1080211672095780864, 1080211672095780865, test message!, 2
+2, 2023-02-28 19:35:32, 2023-02-28 19:35:33, 1080211672049643529, 1080211672049643530, test message!, 2
+3, 2023-02-28 19:35:32, 2023-02-28 19:35:32, 1080211672049643532, 1080211672049643533, test message!, 2
+4, 2023-02-28 19:35:32, 2023-02-28 19:35:33, 1080211672095780864, 1080211672095780866, test message!, 3
+5, 2023-02-28 19:35:32, 2023-02-28 19:35:33, 1080211672049643529, 1080211672049643531, test message!, 3
+
+chat_contacts
+# id, create_time, update_time, user_id, contact_user_id, contact_user_privacy, contact_user_nickname
+1, 2023-02-28 19:19:03, 2023-02-28 19:19:03, 1080207519776763925, 1080207519776763926, 0,
+2, 2023-02-28 19:19:03, 2023-02-28 19:19:03, 1080207519776763934, 1080207519776763935, 0,
+3, 2023-02-28 19:19:03, 2023-02-28 19:19:03, 1080207519776763931, 1080207519776763932, 0,
+4, 2023-02-28 19:19:03, 2023-02-28 19:19:03, 1080207519776763910, 1080207519776763911, 0,
+5, 2023-02-28 19:19:03, 2023-02-28 19:19:03, 1080207519780958211, 1080207519780958212, 0,
+
+*/
 
 class AddContactTask implements Callable<Integer> {
     ChatContactService sample;
@@ -102,24 +121,6 @@ public class ChatContactServiceTests {
     ChatContactService sample = new ChatContactService("127.0.0.1", "root", "123456");
     ExecutorService threadPool = Executors.newFixedThreadPool(64);
 
-    /*
-    chat_contacts_add
-        # id, create_time, update_time, user_id, contact_user_id, add_msg, add_status
-        1, 2023-02-28 19:35:32, 2023-02-28 19:35:32, 1080211672095780864, 1080211672095780865, test message!, 2
-        2, 2023-02-28 19:35:32, 2023-02-28 19:35:33, 1080211672049643529, 1080211672049643530, test message!, 2
-        3, 2023-02-28 19:35:32, 2023-02-28 19:35:32, 1080211672049643532, 1080211672049643533, test message!, 2
-        4, 2023-02-28 19:35:32, 2023-02-28 19:35:33, 1080211672095780864, 1080211672095780866, test message!, 3
-        5, 2023-02-28 19:35:32, 2023-02-28 19:35:33, 1080211672049643529, 1080211672049643531, test message!, 3
-
-    chat_contacts
-        # id, create_time, update_time, user_id, contact_user_id, contact_user_privacy, contact_user_nickname
-        1, 2023-02-28 19:19:03, 2023-02-28 19:19:03, 1080207519776763925, 1080207519776763926, 0,
-        2, 2023-02-28 19:19:03, 2023-02-28 19:19:03, 1080207519776763934, 1080207519776763935, 0,
-        3, 2023-02-28 19:19:03, 2023-02-28 19:19:03, 1080207519776763931, 1080207519776763932, 0,
-        4, 2023-02-28 19:19:03, 2023-02-28 19:19:03, 1080207519776763910, 1080207519776763911, 0,
-        5, 2023-02-28 19:19:03, 2023-02-28 19:19:03, 1080207519780958211, 1080207519780958212, 0,
-    */
-
     //@Test
     void addContactTest() {
         sample.truncateTable("chat_contacts_add");
@@ -147,6 +148,7 @@ public class ChatContactServiceTests {
                     throw new RuntimeException(e);
                 }
             }
+
             try {
                 Assertions.assertNotEquals(future.get(), 0);
             } catch (InterruptedException e) {

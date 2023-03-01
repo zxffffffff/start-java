@@ -18,6 +18,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
+/*
+
+user_account_pwd
+# id, create_time, update_time, user_id, user_password, user_name, user_phone, user_email
+1, 2023-03-01 16:10:31, 2023-03-01 16:10:31, 1080522466373136384, 1...1, zxffff0059, 13000000059,
+2, 2023-03-01 16:10:31, 2023-03-01 16:10:31, 1080522466373136385, 2...f, zxffff0039, 13000000039,
+3, 2023-03-01 16:10:31, 2023-03-01 16:10:31, 1080522466486382593, 7...d, zxffff0060, 13000000060, zxffff0060@qq.com
+4, 2023-03-01 16:10:31, 2023-03-01 16:10:31, 1080522466486382592, 1...3, zxffff0052, 13000000052, zxffff0052@qq.com
+5, 2023-03-01 16:10:31, 2023-03-01 16:10:31, 1080522466524131328, 6...b, zxffff0058, 13000000058, zxffff0058@qq.com
+
+user_account_info
+# id, create_time, update_time, user_id, nickname, sex, age, industry, id_card, others
+1, 2023-03-01 16:10:31, 2023-03-01 16:10:31, 1080522466373136385, nick0039, , 59, , ,
+2, 2023-03-01 16:10:31, 2023-03-01 16:10:31, 1080522466373136384, nick0059, 2, , 土木, ,
+3, 2023-03-01 16:10:31, 2023-03-01 16:10:31, 1080522466486382592, nick0052, 1, , IT/互联网, ,
+4, 2023-03-01 16:10:31, 2023-03-01 16:10:31, 1080522466486382593, nick0060, , 80, , ,
+5, 2023-03-01 16:10:31, 2023-03-01 16:10:31, 1080522466524131328, nick0058, 1, , IT/互联网, ,
+
+*/
+
 class SignupLoginTask implements Callable<Integer> {
     UserAccountService sample;
     int i;
@@ -37,9 +57,22 @@ class SignupLoginTask implements Callable<Integer> {
         String user_phone = "1300000" + s;
         String pwd_md5 = BaseTools.Hash(s, "MD5");
         String user_nickname = "nick" + s;
+        UserAccountInfoDO.Sex sex = UserAccountInfoDO.Sex.Undefined;
+        if (i % 3 == 1)
+            sex = UserAccountInfoDO.Sex.Male;
+        else if (i % 3 == 2)
+            sex = UserAccountInfoDO.Sex.Female;
+        int age = -1;
+        if (i % 3 == 0)
+            age = 20 + i;
+        String industry = "";
+        if (i % 3 == 1)
+            industry = "IT/互联网";
+        else if (i % 3 == 2)
+            industry = "土木";
 
         UserAccountPwdDO pwdDO = UserAccountPwdDO.forSignup(user_name, user_email, user_phone, pwd_md5);
-        UserAccountInfoDO infoDO = UserAccountInfoDO.forSignup(user_nickname);
+        UserAccountInfoDO infoDO = UserAccountInfoDO.forSignup(user_nickname, sex, age, industry);
 
         // signup
         var id = sample.signup(pwdDO, infoDO);
@@ -86,24 +119,6 @@ class SignupLoginTask implements Callable<Integer> {
 public class UserAccountServiceTests {
     UserAccountService sample = new UserAccountService("127.0.0.1", "root", "123456");
     ExecutorService threadPool = Executors.newFixedThreadPool(64);
-
-    /*
-    user_account_pwd
-        # id, create_time, update_time, user_id, user_password, user_name, user_phone, user_email
-        1, 2023-03-01 14:16:01, 2023-03-01 14:16:01, 1080493651194277889, e...4, zxffff0005, 13000000005,
-        2, 2023-03-01 14:16:01, 2023-03-01 14:16:01, 1080493651215249409, 2...e, zxffff0038, 13000000038, zxffff0038@qq.com
-        3, 2023-03-01 14:16:01, 2023-03-01 14:16:01, 1080493651215249408, 5...2, zxffff0014, 13000000014, zxffff0014@qq.com
-        4, 2023-03-01 14:16:01, 2023-03-01 14:16:01, 1080493651194277888, 9...6, zxffff0035, 13000000035,
-        5, 2023-03-01 14:16:01, 2023-03-01 14:16:01, 1080493651236220928, e...9, zxffff0026, 13000000026, zxffff0026@qq.com
-
-    user_account_info
-        # id, create_time, update_time, user_id, nickname, sex, age, industry, id_card, others
-        1, 2023-03-01 14:16:01, 2023-03-01 14:16:01, 1080493651194277889, nick0005, , , , ,
-        2, 2023-03-01 14:16:01, 2023-03-01 14:16:01, 1080493651215249408, nick0014, , , , ,
-        3, 2023-03-01 14:16:01, 2023-03-01 14:16:01, 1080493651236220928, nick0026, , , , ,
-        4, 2023-03-01 14:16:01, 2023-03-01 14:16:01, 1080493651194277888, nick0035, , , , ,
-        5, 2023-03-01 14:16:01, 2023-03-01 14:16:01, 1080493651215249409, nick0038, , , , ,
-    */
 
     //@Test
     void signupLoginTest() {
