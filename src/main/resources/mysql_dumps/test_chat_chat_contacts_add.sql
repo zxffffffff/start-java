@@ -34,7 +34,7 @@ CREATE TABLE `chat_contacts_add` (
   `add_status` tinyint unsigned NOT NULL COMMENT '1=申请中，2=同意，3=拒绝',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='添加好友，用户 M:N 联系人';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COMMENT='添加好友，用户 M:N 联系人';
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -46,4 +46,4 @@ CREATE TABLE `chat_contacts_add` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-28 17:26:39
+-- Dump completed on 2023-03-01 14:49:19

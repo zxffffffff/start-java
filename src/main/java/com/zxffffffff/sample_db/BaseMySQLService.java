@@ -14,7 +14,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import javax.sql.DataSource;
 import java.sql.*;
 
-public class SampleMySQL {
+public class BaseMySQLService {
     protected final DataSource dataSource;
 
     /**
@@ -25,7 +25,7 @@ public class SampleMySQL {
      * @param pwd  密码 "123456"
      * @param db   数据库名 "test_db"
      */
-    public SampleMySQL(String host, String user, String pwd, String db) {
+    public BaseMySQLService(String host, String user, String pwd, String db) {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:mysql://" + host + ":3306/" + db);
         config.setUsername(user);

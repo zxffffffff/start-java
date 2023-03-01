@@ -29,16 +29,16 @@ CREATE TABLE `user_account_info` (
   `create_time` datetime NOT NULL,
   `update_time` datetime NOT NULL,
   `user_id` bigint unsigned NOT NULL COMMENT '用户唯一id',
-  `name` varchar(45) DEFAULT NULL,
+  `nickname` varchar(45) NOT NULL COMMENT '昵称',
   `sex` int unsigned DEFAULT NULL COMMENT '男=1，女=0',
   `age` int unsigned DEFAULT NULL,
-  `id_card` varchar(45) DEFAULT NULL COMMENT '身份证',
   `industry` varchar(45) DEFAULT NULL COMMENT '行业，职业',
+  `id_card` varchar(45) DEFAULT NULL COMMENT '身份证',
   `others` varchar(45) DEFAULT NULL COMMENT '扩展字段',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `user_id_UNIQUE` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='用户账户信息';
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb3 COMMENT='用户账户信息';
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +50,4 @@ CREATE TABLE `user_account_info` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-28 17:26:40
+-- Dump completed on 2023-03-01 14:49:23

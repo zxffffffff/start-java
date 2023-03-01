@@ -11,16 +11,16 @@ package com.zxffffffff.sample_tools;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class SampleTools {
+public class BaseTools {
     // 单例
-    private static final SampleTools instance = new SampleTools();
+    private static final BaseTools instance = new BaseTools();
 
     // 单例
-    private SampleTools() {
+    private BaseTools() {
     }
 
     // 单例
-    public static SampleTools singleton() {
+    public static BaseTools singleton() {
         return instance;
     }
 
