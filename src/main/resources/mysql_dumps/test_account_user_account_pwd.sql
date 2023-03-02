@@ -32,7 +32,7 @@ CREATE TABLE `user_account_pwd` (
   `user_password` char(64) NOT NULL,
   `user_name` varchar(45) NOT NULL COMMENT '用于登录，不可重复',
   `user_phone` varchar(45) NOT NULL COMMENT '用于登录，不可重复',
-  `user_email` varchar(45) DEFAULT NULL COMMENT '用于登录，不可重复，可为空',
+  `user_email` varchar(45) DEFAULT NULL COMMENT '用于登录，不可重复，null表示未填写',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `user_id_UNIQUE` (`user_id`),
@@ -51,4 +51,4 @@ CREATE TABLE `user_account_pwd` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-01 14:49:22
+-- Dump completed on 2023-03-02 15:23:49

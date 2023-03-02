@@ -121,7 +121,7 @@ public class ChatContactServiceTests {
     ChatContactService sample = new ChatContactService("127.0.0.1", "root", "123456");
     ExecutorService threadPool = Executors.newFixedThreadPool(64);
 
-    //@Test
+    @Test
     void addContactTest() {
         sample.truncateTable("chat_contacts_add");
         sample.truncateTable("chat_contacts");

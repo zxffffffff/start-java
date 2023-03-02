@@ -32,7 +32,7 @@ CREATE TABLE `chat_contacts_message` (
   `contact_user_id` bigint unsigned NOT NULL COMMENT '用户唯一id',
   `msg_type` tinyint unsigned NOT NULL COMMENT '0=text, 1=file(text=filename), 2=link(text)',
   `msg_text` varchar(45) NOT NULL,
-  `msg_file` blob,
+  `msg_file` blob NOT NULL,
   `is_recalled` tinyint unsigned NOT NULL DEFAULT '0' COMMENT '1=消息撤回',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
@@ -48,4 +48,4 @@ CREATE TABLE `chat_contacts_message` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-01 14:49:22
+-- Dump completed on 2023-03-02 15:23:46

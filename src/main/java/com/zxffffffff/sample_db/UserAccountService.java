@@ -38,11 +38,12 @@ public class UserAccountService extends BaseMySQLService {
 
         // [1] select
         try (Connection conn = this.dataSource.getConnection()) {
-            String sql = "SELECT id FROM user_account_pwd " + "WHERE user_name=? or user_email=? or user_phone=?;";
+            String sql = "SELECT id FROM user_account_pwd WHERE user_name=? or user_email=? or user_phone=?;";
             try (PreparedStatement pst = conn.prepareStatement(sql)) {
                 pst.setString(1, pwdDO.user_name());
                 pst.setString(2, pwdDO.user_email());
                 pst.setString(3, pwdDO.user_phone());
+
                 try (ResultSet rs = pst.executeQuery()) {
                     return rs.next();
                 }
@@ -78,7 +79,7 @@ public class UserAccountService extends BaseMySQLService {
             // 开启事务
             conn.setAutoCommit(false);
             try {
-                String sql = "INSERT INTO user_account_pwd " + "(create_time,update_time,user_id,user_password,user_name,user_phone,user_email) " + "VALUES (?,?,?,?,?,?,?);";
+                String sql = "INSERT INTO user_account_pwd (create_time,update_time,user_id,user_password,user_name,user_phone,user_email) VALUES (?,?,?,?,?,?,?);";
                 try (PreparedStatement pst = conn.prepareStatement(sql)) {
                     String user_password = BaseTools.getSaltPassword(pwdDO.user_pwd_md5());
 
@@ -90,22 +91,22 @@ public class UserAccountService extends BaseMySQLService {
                     pst.setString(6, pwdDO.user_phone());
                     if (pwdDO.user_email().isEmpty()) pst.setNull(7, Types.VARCHAR);
                     else pst.setString(7, pwdDO.user_email());
+
                     int ret = pst.executeUpdate();
                     assert (ret == 1);
                 }
 
-                String sql2 = "INSERT INTO user_account_info " + "(create_time,update_time,user_id,nickname,sex,age,industry) " + "VALUES (?,?,?,?,?,?,?);";
+                String sql2 = "INSERT INTO user_account_info (create_time,update_time,user_id,nickname,sex,age,industry,id_card) VALUES (?,?,?,?,?,?,?,?);";
                 try (PreparedStatement pst = conn.prepareStatement(sql2)) {
                     pst.setTimestamp(1, dt);
                     pst.setTimestamp(2, dt);
                     pst.setLong(3, user_id);
                     pst.setString(4, infoDO.nickname());
-                    if (infoDO.sex() == UserAccountInfoDO.Sex.Undefined) pst.setNull(5, Types.INTEGER);
-                    else pst.setInt(5, infoDO.sex().ordinal());
-                    if (infoDO.age() < 0) pst.setNull(6, Types.INTEGER);
-                    else pst.setInt(6, infoDO.age());
-                    if (infoDO.industry().isEmpty()) pst.setNull(7, Types.VARCHAR);
-                    else pst.setString(7, infoDO.industry());
+                    pst.setInt(5, infoDO.sex().ordinal());
+                    pst.setInt(6, infoDO.age());
+                    pst.setString(7, infoDO.industry());
+                    pst.setString(8, "");
+
                     int ret = pst.executeUpdate();
                     assert (ret == 1);
                 }
@@ -113,7 +114,7 @@ public class UserAccountService extends BaseMySQLService {
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();
-                throw new RuntimeException("error rollback: " + e.toString());
+                throw new RuntimeException("error rollback: " + e);
             } finally {
                 conn.setAutoCommit(true);
             }
@@ -137,7 +138,7 @@ public class UserAccountService extends BaseMySQLService {
         }
 
         // [1] 判断类型
-        String sql = "SELECT user_id FROM user_account_pwd " + "WHERE user_password=? AND ";
+        String sql = "SELECT user_id FROM user_account_pwd WHERE user_password=? AND ";
         if (BaseTools.checkIsValidMail(user_name_email_phone)) {
             sql += "user_email=?;";
         } else if (BaseTools.checkIsValidPhone(user_name_email_phone)) {
@@ -153,11 +154,46 @@ public class UserAccountService extends BaseMySQLService {
             try (PreparedStatement pst = conn.prepareStatement(sql)) {
                 pst.setString(1, user_password);
                 pst.setString(2, user_name_email_phone);
+
                 try (ResultSet rs = pst.executeQuery()) {
                     if (rs.next()) {
                         return rs.getLong(1);
                     } else {
                         throw new RuntimeException("user name or password err");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 用户信息（user_account_info）
+     *
+     * @param user_id 用户id
+     * @return 用户信息
+     */
+    public UserAccountInfoDO getInfo(long user_id) {
+        // [0] 检查参数
+        if (user_id == 0) {
+            throw new RuntimeException("invalid user_id");
+        }
+
+        try (Connection conn = this.dataSource.getConnection()) {
+            String sql = "SELECT nickname,sex,age,industry FROM user_account_info where user_id=?;";
+            try (PreparedStatement pst = conn.prepareStatement(sql)) {
+                pst.setLong(1, user_id);
+
+                try (ResultSet rs = pst.executeQuery()) {
+                    if (rs.next()) {
+                        String nickname = rs.getString(1);
+                        int sex = rs.getInt(2);
+                        int age = rs.getInt(3);
+                        String industry = rs.getString(4);
+                        return new UserAccountInfoDO(user_id, nickname, UserAccountInfoDO.Sex.values()[sex], age, industry);
+                    } else {
+                        throw new RuntimeException("user id err");
                     }
                 }
             }

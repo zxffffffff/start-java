@@ -31,10 +31,10 @@ CREATE TABLE `chat_contacts` (
   `user_id` bigint unsigned NOT NULL COMMENT '用户唯一id',
   `contact_user_id` bigint unsigned NOT NULL COMMENT '用户唯一id',
   `contact_user_privacy` int unsigned NOT NULL DEFAULT '0' COMMENT '权限：0=无限制，0x1=拉黑，0x2=禁止访问朋友圈，0x4=不看他的朋友圈',
-  `contact_user_nickname` varchar(45) DEFAULT NULL COMMENT '昵称',
+  `contact_user_nickname` varchar(45) NOT NULL DEFAULT '' COMMENT '昵称',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COMMENT='用户 M:N 联系人';
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8mb3 COMMENT='用户 M:N 联系人';
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -46,4 +46,4 @@ CREATE TABLE `chat_contacts` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-01 14:49:20
+-- Dump completed on 2023-03-02 15:23:47

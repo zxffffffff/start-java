@@ -29,11 +29,11 @@ CREATE TABLE `chat_groups` (
   `create_time` datetime NOT NULL,
   `update_time` datetime NOT NULL,
   `group_id` bigint unsigned NOT NULL COMMENT '分组唯一id',
-  `group_nickname` varchar(45) DEFAULT NULL COMMENT '分组名',
-  `group_desc` varchar(45) DEFAULT NULL COMMENT '分组描述',
+  `group_nickname` varchar(45) NOT NULL DEFAULT '' COMMENT '分组名',
+  `group_desc` varchar(45) NOT NULL DEFAULT '' COMMENT '分组描述',
   `group_user_id` bigint unsigned NOT NULL COMMENT '用户唯一id',
   `group_user_privacy` int unsigned NOT NULL DEFAULT '0' COMMENT '位运算：0=无限制，0x1=禁言',
-  `group_user_nickname` varchar(45) DEFAULT NULL COMMENT '昵称',
+  `group_user_nickname` varchar(45) NOT NULL DEFAULT '' COMMENT '昵称',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='群组 M:N 用户';
@@ -48,4 +48,4 @@ CREATE TABLE `chat_groups` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-01 14:49:21
+-- Dump completed on 2023-03-02 15:23:47

@@ -172,7 +172,7 @@ public class ChatContactService extends BaseMySQLService {
                     conn.commit();
                 } catch (SQLException e) {
                     conn.rollback();
-                    throw new RuntimeException("error rollback");
+                    throw new RuntimeException("error rollback: " + e);
                 } finally {
                     conn.setAutoCommit(true);
                 }

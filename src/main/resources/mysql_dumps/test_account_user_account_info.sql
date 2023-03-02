@@ -29,12 +29,11 @@ CREATE TABLE `user_account_info` (
   `create_time` datetime NOT NULL,
   `update_time` datetime NOT NULL,
   `user_id` bigint unsigned NOT NULL COMMENT '用户唯一id',
-  `nickname` varchar(45) NOT NULL COMMENT '昵称',
-  `sex` int unsigned DEFAULT NULL COMMENT '男=1，女=0',
-  `age` int unsigned DEFAULT NULL,
-  `industry` varchar(45) DEFAULT NULL COMMENT '行业，职业',
-  `id_card` varchar(45) DEFAULT NULL COMMENT '身份证',
-  `others` varchar(45) DEFAULT NULL COMMENT '扩展字段',
+  `nickname` varchar(45) NOT NULL COMMENT '昵称，不可为""用随机值代替',
+  `sex` tinyint unsigned NOT NULL DEFAULT '0' COMMENT '未填写=0，男=1，女=2',
+  `age` int NOT NULL DEFAULT '-1' COMMENT '未填写=-1',
+  `industry` varchar(45) NOT NULL DEFAULT '' COMMENT '行业，职业',
+  `id_card` varchar(45) NOT NULL DEFAULT '' COMMENT '身份证',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `user_id_UNIQUE` (`user_id`)
@@ -50,4 +49,4 @@ CREATE TABLE `user_account_info` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-01 14:49:23
+-- Dump completed on 2023-03-02 15:23:49

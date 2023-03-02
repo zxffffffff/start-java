@@ -49,6 +49,7 @@ class SignupLoginTask implements Callable<Integer> {
 
     @Override
     public Integer call() {
+        assert (i < 1000);
         String s = String.format("%04d", i);
         String user_name = "zxffff" + s;
         String user_email = "";
@@ -86,9 +87,9 @@ class SignupLoginTask implements Callable<Integer> {
 
         // login
         var id2 = sample.login(user_name, pwd_md5);
-        Assertions.assertNotEquals(id2, 0);
+        Assertions.assertEquals(id2, id);
         var id4 = sample.login(user_phone, pwd_md5);
-        Assertions.assertNotEquals(id4, 0);
+        Assertions.assertEquals(id4, id);
         if (i % 2 == 0) {
             var id3 = sample.login(user_email, pwd_md5);
             Assertions.assertNotEquals(id3, 0);
@@ -112,6 +113,13 @@ class SignupLoginTask implements Callable<Integer> {
             Assertions.assertTrue(true);
         }
 
+        // getInfo
+        UserAccountInfoDO infoDO2 = sample.getInfo(id);
+        Assertions.assertEquals(infoDO.nickname(), infoDO2.nickname());
+        Assertions.assertEquals(infoDO.sex(), infoDO2.sex());
+        Assertions.assertEquals(infoDO.age(), infoDO2.age());
+        Assertions.assertEquals(infoDO.industry(), infoDO2.industry());
+
         return 123;
     }
 }
@@ -120,7 +128,7 @@ public class UserAccountServiceTests {
     UserAccountService sample = new UserAccountService("127.0.0.1", "root", "123456");
     ExecutorService threadPool = Executors.newFixedThreadPool(64);
 
-    //@Test
+    @Test
     void signupLoginTest() {
         sample.truncateTable("user_account_pwd");
         sample.truncateTable("user_account_info");

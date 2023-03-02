@@ -14,6 +14,10 @@ public record ChatContactsAddDO(long contact_user_id, AddStatus add_status) {
         Undefined, Waiting, Accepted, Refused
     }
 
+    public ChatContactsAddDO {
+        assert (add_status != null);
+    }
+
     public ChatContactsAddDO() {
         this(0, AddStatus.Undefined);
     }
