@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -38,7 +39,7 @@ user_account_info
 
 */
 
-class SignupLoginTask implements Callable<Integer> {
+class SignupLoginTask implements Callable<Long> {
     UserAccountService sample;
     int i;
 
@@ -48,7 +49,7 @@ class SignupLoginTask implements Callable<Integer> {
     }
 
     @Override
-    public Integer call() {
+    public Long call() {
         assert (i < 1000);
         String s = String.format("%04d", i);
         String user_name = "zxffff" + s;
@@ -120,7 +121,7 @@ class SignupLoginTask implements Callable<Integer> {
         Assertions.assertEquals(infoDO.age(), infoDO2.age());
         Assertions.assertEquals(infoDO.industry(), infoDO2.industry());
 
-        return 123;
+        return id;
     }
 }
 
@@ -142,7 +143,7 @@ public class UserAccountServiceTests {
         sample.truncateTable("user_account_pwd");
         sample.truncateTable("user_account_info");
 
-        List<Future<Integer>> futures = new ArrayList<>();
+        List<Future<Long>> futures = new ArrayList<>();
         for (int i = 0; i < 64; ++i) {
             var future = threadPool.submit(new SignupLoginTask(sample, i));
             futures.add(future);
@@ -163,5 +164,23 @@ public class UserAccountServiceTests {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    @Test
+    void getInfoListTest() {
+        sample.truncateTable("user_account_pwd");
+        sample.truncateTable("user_account_info");
+
+        var task1 = new SignupLoginTask(sample, 888);
+        var task2 = new SignupLoginTask(sample, 999);
+        long id1 = task1.call();
+        long id2 = task2.call();
+
+        List<Long> list = new ArrayList<>(Arrays.asList(id1, id2));
+
+        List<UserAccountInfoDO> infoList = sample.getInfoList(list);
+        Assertions.assertEquals(infoList.size(), 2);
+        Assertions.assertEquals(infoList.get(0).user_id(), id2);
+        Assertions.assertEquals(infoList.get(1).user_id(), id1);
     }
 }

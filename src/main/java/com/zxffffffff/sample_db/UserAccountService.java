@@ -13,6 +13,8 @@ import com.zxffffffff.sample_db.DO.UserAccountPwdDO;
 import com.zxffffffff.sample_tools.BaseTools;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserAccountService extends BaseMySQLService {
     UserAccountService(String host, String user, String pwd) {
@@ -24,7 +26,7 @@ public class UserAccountService extends BaseMySQLService {
      *
      * @param pwdDO 必须 user_name,user_email,user_phone
      */
-    public boolean checkSignupAccount(UserAccountPwdDO pwdDO) {
+    public boolean exists(UserAccountPwdDO pwdDO) {
         // [0] 检查参数
         if (!BaseTools.checkIsValidName(pwdDO.user_name())) {
             throw new RuntimeException("invalid user name");
@@ -38,14 +40,16 @@ public class UserAccountService extends BaseMySQLService {
 
         // [1] select
         try (Connection conn = this.dataSource.getConnection()) {
-            String sql = "SELECT id FROM user_account_pwd WHERE user_name=? or user_email=? or user_phone=?;";
+            String sql = "SELECT COUNT(*) FROM user_account_pwd WHERE user_name=? or user_email=? or user_phone=?;";
             try (PreparedStatement pst = conn.prepareStatement(sql)) {
                 pst.setString(1, pwdDO.user_name());
                 pst.setString(2, pwdDO.user_email());
                 pst.setString(3, pwdDO.user_phone());
 
                 try (ResultSet rs = pst.executeQuery()) {
-                    return rs.next();
+                    rs.next();
+                    int count = rs.getInt(1);
+                    return count > 0;
                 }
             }
         } catch (SQLException e) {
@@ -62,7 +66,7 @@ public class UserAccountService extends BaseMySQLService {
      */
     public long signup(UserAccountPwdDO pwdDO, UserAccountInfoDO infoDO) {
         // [0] 检查user是否存在
-        var exist = checkSignupAccount(pwdDO);
+        var exist = exists(pwdDO);
         if (exist) {
             throw new RuntimeException("user name/email/phone exists");
         }
@@ -195,6 +199,53 @@ public class UserAccountService extends BaseMySQLService {
                     } else {
                         throw new RuntimeException("user id err");
                     }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 用户信息批量查询（user_account_info）
+     *
+     * @param list_user_id 用户id
+     * @return 用户信息
+     */
+    public List<UserAccountInfoDO> getInfoList(List<Long> list_user_id) {
+        // [0] 检查参数
+        if (list_user_id.isEmpty()) {
+            return new ArrayList<>();
+        }
+        for (long user_id : list_user_id) {
+            if (user_id == 0) {
+                throw new RuntimeException("invalid user_id");
+            }
+        }
+
+        try (Connection conn = this.dataSource.getConnection()) {
+            StringBuilder sql = new StringBuilder("SELECT user_id,nickname,sex,age,industry FROM user_account_info where");
+            for (int i = 0; i < list_user_id.size(); ++i) {
+                if (i > 0) sql.append(" or");
+                sql.append(" user_id=?");
+            }
+            sql.append(" ORDER BY id DESC;");
+            try (PreparedStatement pst = conn.prepareStatement(sql.toString())) {
+                for (int i = 0; i < list_user_id.size(); ++i) {
+                    pst.setLong(i + 1, list_user_id.get(i));
+                }
+
+                try (ResultSet rs = pst.executeQuery()) {
+                    List<UserAccountInfoDO> ret = new ArrayList<>();
+                    while (rs.next()) {
+                        long user_id = rs.getLong(1);
+                        String nickname = rs.getString(2);
+                        int sex = rs.getInt(3);
+                        int age = rs.getInt(4);
+                        String industry = rs.getString(5);
+                        ret.add(new UserAccountInfoDO(user_id, nickname, UserAccountInfoDO.Sex.values()[sex], age, industry));
+                    }
+                    return ret;
                 }
             }
         } catch (SQLException e) {

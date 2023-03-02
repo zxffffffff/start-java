@@ -150,7 +150,7 @@ public class ChatContactServiceTests {
             }
 
             try {
-                Assertions.assertNotEquals(future.get(), 0);
+                Assertions.assertEquals(future.get(), 123);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             } catch (ExecutionException e) {

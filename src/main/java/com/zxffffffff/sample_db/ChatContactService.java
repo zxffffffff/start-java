@@ -32,33 +32,43 @@ public class ChatContactService extends BaseMySQLService {
             throw new RuntimeException("invalid id");
         }
 
-        // [1] 检查是否已存在
         try (Connection conn = this.dataSource.getConnection()) {
-            String sql = "SELECT id FROM chat_contacts_add WHERE user_id=? and contact_user_id=? and add_status='1';";
+            // [1] 检查是否已添加好友
+            String sql = "SELECT COUNT(*) FROM chat_contacts WHERE user_id=? and contact_user_id=?;";
             try (PreparedStatement pst = conn.prepareStatement(sql)) {
                 pst.setLong(1, user_id);
                 pst.setLong(2, contact_user_id);
+
                 try (ResultSet rs = pst.executeQuery()) {
-                    if (rs.next()) {
-                        throw new RuntimeException("user add task exists");
-                    }
+                    rs.next();
+                    int count = rs.getInt(1);
+                    if (count > 0) throw new RuntimeException("user contact exists");
                 }
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
-        // [2] 插入
-        try (Connection conn = this.dataSource.getConnection()) {
+            // [2] 检查是否重复申请，1=申请中，2=同意
+            String sql2 = "SELECT COUNT(*) FROM chat_contacts_add WHERE user_id=? and contact_user_id=? and add_status in ('1','2');";
+            try (PreparedStatement pst = conn.prepareStatement(sql2)) {
+                pst.setLong(1, user_id);
+                pst.setLong(2, contact_user_id);
+
+                try (ResultSet rs = pst.executeQuery()) {
+                    rs.next();
+                    int count = rs.getInt(1);
+                    if (count > 0) throw new RuntimeException("user add task exists");
+                }
+            }
+
             Timestamp dt = new java.sql.Timestamp(System.currentTimeMillis());
-            String sql = "INSERT INTO chat_contacts_add (create_time,update_time,user_id,contact_user_id,add_msg,add_status) VALUES (?,?,?,?,?,?);";
-            try (PreparedStatement pst = conn.prepareStatement(sql)) {
+            String sql3 = "INSERT INTO chat_contacts_add (create_time,update_time,user_id,contact_user_id,add_msg,add_status) VALUES (?,?,?,?,?,?);";
+            try (PreparedStatement pst = conn.prepareStatement(sql3)) {
                 pst.setTimestamp(1, dt);
                 pst.setTimestamp(2, dt);
                 pst.setLong(3, user_id);
                 pst.setLong(4, contact_user_id);
                 pst.setString(5, add_msg);
                 pst.setInt(6, 1);
+
                 int ret = pst.executeUpdate();
                 assert (ret == 1);
             }
@@ -114,13 +124,14 @@ public class ChatContactService extends BaseMySQLService {
             throw new RuntimeException("invalid status");
         }
 
-        // [1] 检查是否已存在
+        // [1] 检查是否申请，1=申请中
         long id;
         try (Connection conn = this.dataSource.getConnection()) {
             String sql = "SELECT id FROM chat_contacts_add WHERE user_id=? and contact_user_id=? and add_status='1';";
             try (PreparedStatement pst = conn.prepareStatement(sql)) {
                 pst.setLong(1, user_id);
                 pst.setLong(2, contact_user_id);
+
                 try (ResultSet rs = pst.executeQuery()) {
                     if (rs.next()) {
                         id = rs.getLong(1);
