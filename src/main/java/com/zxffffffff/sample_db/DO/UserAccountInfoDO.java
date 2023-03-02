@@ -23,10 +23,6 @@ public record UserAccountInfoDO(long user_id, String nickname, Sex sex, int age,
         assert (industry != null);
     }
 
-    public UserAccountInfoDO() {
-        this(0, "", Sex.Undefined, -1, "");
-    }
-
     /**
      * 注册参数
      */

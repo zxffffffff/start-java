@@ -9,6 +9,7 @@
 package com.zxffffffff.sample_db;
 
 import com.zxffffffff.sample_db.DO.ChatContactsAddDO;
+import com.zxffffffff.sample_db.DO.ChatContactsMessageDO;
 import com.zxffffffff.sample_tools.BaseTools;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -113,6 +114,16 @@ class AddContactTask implements Callable<Integer> {
             Assertions.assertEquals(list.get(0), contact_id);
         }
 
+        // setContactMessage
+        String message1 = "message 1";
+        ChatContactsMessageDO messageDO1 = ChatContactsMessageDO.forSetText(user_id, contact_id, message1);
+        sample.setContactMessage(messageDO1);
+
+        // getContactMessage
+        List<ChatContactsMessageDO> contactMessage = sample.getContactMessage(user_id, contact_id, 0, 100);
+        Assertions.assertEquals(contactMessage.size(), 1);
+        Assertions.assertEquals(contactMessage.get(0).msg_text(), message1);
+
         return 123;
     }
 }
@@ -125,6 +136,7 @@ public class ChatContactServiceTests {
     void addContactTest() {
         sample.truncateTable("chat_contacts_add");
         sample.truncateTable("chat_contacts");
+        sample.truncateTable("chat_contacts_message");
 
         var task = new AddContactTask(sample);
         task.call();
@@ -134,6 +146,7 @@ public class ChatContactServiceTests {
     void addContactTestThread() {
         sample.truncateTable("chat_contacts_add");
         sample.truncateTable("chat_contacts");
+        sample.truncateTable("chat_contacts_message");
 
         List<Future<Integer>> futures = new ArrayList<>();
         for (int i = 0; i < 64; ++i) {

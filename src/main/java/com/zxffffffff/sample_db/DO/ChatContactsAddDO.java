@@ -3,10 +3,11 @@ package com.zxffffffff.sample_db.DO;
 /**
  * 添加联系人列表（chat_contacts_add）
  *
+ * @param user_id         用户
  * @param contact_user_id 添加联系人
  * @param add_status      申请状态
  */
-public record ChatContactsAddDO(long contact_user_id, AddStatus add_status) {
+public record ChatContactsAddDO(long user_id, long contact_user_id, AddStatus add_status) {
     /**
      * 1=申请中，2=同意，3=拒绝
      */
@@ -16,9 +17,5 @@ public record ChatContactsAddDO(long contact_user_id, AddStatus add_status) {
 
     public ChatContactsAddDO {
         assert (add_status != null);
-    }
-
-    public ChatContactsAddDO() {
-        this(0, AddStatus.Undefined);
     }
 }

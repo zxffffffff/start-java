@@ -38,7 +38,7 @@ public class UserAccountService extends BaseMySQLService {
             throw new RuntimeException("invalid user phone");
         }
 
-        // [1] select
+        // [1] 查询
         try (Connection conn = this.dataSource.getConnection()) {
             String sql = "SELECT COUNT(*) FROM user_account_pwd WHERE user_name=? or user_email=? or user_phone=?;";
             try (PreparedStatement pst = conn.prepareStatement(sql)) {
@@ -76,11 +76,10 @@ public class UserAccountService extends BaseMySQLService {
             throw new RuntimeException("invalid password MD5");
         }
 
-        // [2] 插入user
         long user_id = BaseTools.generateSnowFlakeID();
         try (Connection conn = this.dataSource.getConnection()) {
             Timestamp dt = new java.sql.Timestamp(System.currentTimeMillis());
-            // 开启事务
+            // 开启事务插入user
             conn.setAutoCommit(false);
             try {
                 String sql = "INSERT INTO user_account_pwd (create_time,update_time,user_id,user_password,user_name,user_phone,user_email) VALUES (?,?,?,?,?,?,?);";
@@ -155,6 +154,7 @@ public class UserAccountService extends BaseMySQLService {
         String user_password = BaseTools.getSaltPassword(user_pwd_md5);
 
         try (Connection conn = this.dataSource.getConnection()) {
+            // [2] 查询
             try (PreparedStatement pst = conn.prepareStatement(sql)) {
                 pst.setString(1, user_password);
                 pst.setString(2, user_name_email_phone);
@@ -185,6 +185,7 @@ public class UserAccountService extends BaseMySQLService {
         }
 
         try (Connection conn = this.dataSource.getConnection()) {
+            // [1] 查询
             String sql = "SELECT nickname,sex,age,industry FROM user_account_info where user_id=?;";
             try (PreparedStatement pst = conn.prepareStatement(sql)) {
                 pst.setLong(1, user_id);
@@ -224,6 +225,7 @@ public class UserAccountService extends BaseMySQLService {
         }
 
         try (Connection conn = this.dataSource.getConnection()) {
+            // [1] 查询
             StringBuilder sql = new StringBuilder("SELECT user_id,nickname,sex,age,industry FROM user_account_info where");
             for (int i = 0; i < list_user_id.size(); ++i) {
                 if (i > 0) sql.append(" or");

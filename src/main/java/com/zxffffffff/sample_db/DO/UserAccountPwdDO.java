@@ -18,10 +18,6 @@ public record UserAccountPwdDO(long user_id, String user_name, String user_email
         assert (user_pwd_md5 != null);
     }
 
-    public UserAccountPwdDO() {
-        this(0, "", "", "", "");
-    }
-
     /**
      * 注册参数
      */
