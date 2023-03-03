@@ -1,4 +1,12 @@
-package com.zxffffffff.sample_db.DO;
+/****************************************************************************
+ ** MIT License
+ **
+ ** Author	: xiaofeng.zhu
+ ** Support	: zxffffffff@outlook.com, 1337328542@qq.com
+ **
+ ****************************************************************************/
+
+package com.zxffffffff.DO;
 
 /**
  * 用户基础信息（user_account_info）

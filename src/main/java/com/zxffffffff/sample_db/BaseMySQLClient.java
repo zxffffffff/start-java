@@ -14,7 +14,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import javax.sql.DataSource;
 import java.sql.*;
 
-public class BaseMySQLService {
+public class BaseMySQLClient {
     protected final DataSource dataSource;
 
     /**
@@ -25,14 +25,14 @@ public class BaseMySQLService {
      * @param pwd  密码 "123456"
      * @param db   数据库名 "test_db"
      */
-    public BaseMySQLService(String host, String user, String pwd, String db) {
+    public BaseMySQLClient(String host, String user, String pwd, String db) {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:mysql://" + host + ":3306/" + db);
         config.setUsername(user);
         config.setPassword(pwd);
         config.addDataSourceProperty("connectionTimeout", "1000"); // 连接超时：1秒
         config.addDataSourceProperty("idleTimeout", "60000"); // 空闲超时：60秒
-        config.addDataSourceProperty("maximumPoolSize", "10"); // 最大连接数：10
+        config.addDataSourceProperty("maximumPoolSize", "100"); // 最大连接数：100
         this.dataSource = new HikariDataSource(config);
     }
 

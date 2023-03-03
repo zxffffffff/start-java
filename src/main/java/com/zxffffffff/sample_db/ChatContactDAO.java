@@ -8,16 +8,20 @@
 
 package com.zxffffffff.sample_db;
 
-import com.zxffffffff.sample_db.DO.ChatContactsAddDO;
-import com.zxffffffff.sample_db.DO.ChatContactsMessageDO;
+import com.zxffffffff.DO.ChatContactsAddDO;
+import com.zxffffffff.DO.ChatContactsMessageDO;
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatContactService extends BaseMySQLService {
-    ChatContactService(String host, String user, String pwd) {
+/**
+ * 聊天IM相关
+ * 线程安全，可重入
+ */
+public class ChatContactDAO extends BaseMySQLClient {
+    public ChatContactDAO(String host, String user, String pwd) {
         super(host, user, pwd, "test_chat");
     }
 
@@ -273,7 +277,7 @@ public class ChatContactService extends BaseMySQLService {
     }
 
     /**
-     * 聊天信息（chat_contacts_message）
+     * 插入聊天信息（chat_contacts_message）
      *
      * @param messageDO 必须 user_id，contact_user_id，msg_type，msg_text/msg_file
      */
@@ -306,7 +310,7 @@ public class ChatContactService extends BaseMySQLService {
     }
 
     /**
-     * 聊天信息（chat_contacts_message）
+     * 查询聊天信息-单向（chat_contacts_message）
      *
      * @param user_id         用户
      * @param contact_user_id 联系人
@@ -338,6 +342,53 @@ public class ChatContactService extends BaseMySQLService {
                         Blob msgFile = rs.getBlob(4);
                         int is_recalled = rs.getInt(5);
                         list.add(new ChatContactsMessageDO(dt, user_id, contact_user_id, ChatContactsMessageDO.MsgType.values()[msgType], msgText, msgFile.getBytes(1, (int) msgFile.length()), (is_recalled == 1)));
+                    }
+                    return list;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    /**
+     * 查询聊天信息-双向（chat_contacts_message）
+     *
+     * @param user_id         用户
+     * @param contact_user_id 联系人
+     */
+    public List<ChatContactsMessageDO> getContactMessage2(long user_id, long contact_user_id, int offset, int limit) {
+        // [0] 检查参数
+        if (user_id == 0 || contact_user_id == 0) {
+            throw new RuntimeException("invalid id");
+        }
+        if (limit > 100 || offset > 100000) {
+            throw new RuntimeException("invalid param");
+        }
+
+        // [1] 查询
+        try (Connection conn = this.dataSource.getConnection()) {
+            String sql = "SELECT a.update_time,a.user_id,a.contact_user_id,a.msg_type,a.msg_text,a.msg_file,a.is_recalled FROM chat_contacts_message as a, (SELECT id FROM chat_contacts_message WHERE user_id=? and contact_user_id=? or contact_user_id=? and user_id=? ORDER BY id DESC LIMIT ?,?) as b WHERE a.id=b.id;";
+            try (PreparedStatement pst = conn.prepareStatement(sql)) {
+                pst.setLong(1, user_id);
+                pst.setLong(2, contact_user_id);
+                pst.setLong(3, user_id);
+                pst.setLong(4, contact_user_id);
+                pst.setInt(5, offset);
+                pst.setInt(6, limit);
+
+                try (ResultSet rs = pst.executeQuery()) {
+                    List<ChatContactsMessageDO> list = new ArrayList<>();
+                    while (rs.next()) {
+                        Timestamp dt = rs.getTimestamp(1);
+                        long temp_user_id = rs.getLong(2);
+                        long temp_contact_user_id = rs.getLong(3);
+                        int msgType = rs.getInt(4);
+                        String msgText = rs.getString(5);
+                        Blob msgFile = rs.getBlob(6);
+                        int is_recalled = rs.getInt(7);
+                        list.add(new ChatContactsMessageDO(dt, temp_user_id, temp_contact_user_id, ChatContactsMessageDO.MsgType.values()[msgType], msgText, msgFile.getBytes(1, (int) msgFile.length()), (is_recalled == 1)));
                     }
                     return list;
                 }

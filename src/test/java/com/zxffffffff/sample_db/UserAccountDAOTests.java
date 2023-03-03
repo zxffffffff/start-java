@@ -8,8 +8,8 @@
 
 package com.zxffffffff.sample_db;
 
-import com.zxffffffff.sample_db.DO.UserAccountInfoDO;
-import com.zxffffffff.sample_db.DO.UserAccountPwdDO;
+import com.zxffffffff.DO.UserAccountInfoDO;
+import com.zxffffffff.DO.UserAccountPwdDO;
 import com.zxffffffff.sample_tools.BaseTools;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -40,10 +40,10 @@ user_account_info
 */
 
 class SignupLoginTask implements Callable<Long> {
-    UserAccountService sample;
+    UserAccountDAO sample;
     int i;
 
-    public SignupLoginTask(UserAccountService sample, int i) {
+    public SignupLoginTask(UserAccountDAO sample, int i) {
         this.sample = sample;
         this.i = i;
     }
@@ -125,8 +125,8 @@ class SignupLoginTask implements Callable<Long> {
     }
 }
 
-public class UserAccountServiceTests {
-    UserAccountService sample = new UserAccountService("127.0.0.1", "root", "123456");
+public class UserAccountDAOTests {
+    UserAccountDAO sample = new UserAccountDAO("127.0.0.1", "root", "123456");
     ExecutorService threadPool = Executors.newFixedThreadPool(64);
 
     @Test

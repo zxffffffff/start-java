@@ -24,9 +24,15 @@
 
 
 ## Spring Boot
-- 在线创建项目：https://start.spring.io/
+- 参考：https://start.spring.io/
 
 
 ## JDBC（Java DataBase Connectivity）
 - JDBC Interface 已内置 JDK 中，是一种标准接口
 - JDBC Driver 由数据库厂商实现，例如 MySQL Driver 由 Oracle 实现（引入 jar 包）
+
+
+## Jedis
+- 参考：https://github.com/redis/jedis
+- Redis 官方客户端，低级封装
+

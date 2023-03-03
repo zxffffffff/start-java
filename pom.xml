@@ -36,6 +36,12 @@
 		</dependency>
 
 		<dependency>
+			<!-- redis驱动 -->
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+
+		<dependency>
 			<!-- 数据库连接池 -->
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>

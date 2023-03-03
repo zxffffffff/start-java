@@ -6,16 +6,14 @@
  **
  ****************************************************************************/
 
-package com.zxffffffff.sample;
+package com.zxffffffff.sample_cache;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-class SampleApplicationTests {
-	SampleApplication application = new SampleApplication();
-
-	@Test
-	void contextLoads() {
-	}
+/**
+ * 聊天IM相关
+ * 线程安全，可重入
+ */
+public class ChatContactCacheDAO extends BaseRedisClient {
+    public ChatContactCacheDAO(String host) {
+        super(host);
+    }
 }

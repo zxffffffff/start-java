@@ -6,16 +6,15 @@
  **
  ****************************************************************************/
 
-package com.zxffffffff.sample;
+package com.zxffffffff.sample_cache;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
-@SpringBootTest
-class SampleApplicationTests {
-	SampleApplication application = new SampleApplication();
+public class BaseRedisClient {
+    protected final JedisPool pool;
 
-	@Test
-	void contextLoads() {
-	}
+    public BaseRedisClient(String host) {
+        pool = new JedisPool(host, 6379);
+    }
 }

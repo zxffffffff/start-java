@@ -8,16 +8,20 @@
 
 package com.zxffffffff.sample_db;
 
-import com.zxffffffff.sample_db.DO.UserAccountInfoDO;
-import com.zxffffffff.sample_db.DO.UserAccountPwdDO;
+import com.zxffffffff.DO.UserAccountInfoDO;
+import com.zxffffffff.DO.UserAccountPwdDO;
 import com.zxffffffff.sample_tools.BaseTools;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserAccountService extends BaseMySQLService {
-    UserAccountService(String host, String user, String pwd) {
+/**
+ * 用户账户相关
+ * 线程安全，可重入
+ */
+public class UserAccountDAO extends BaseMySQLClient {
+    public UserAccountDAO(String host, String user, String pwd) {
         super(host, user, pwd, "test_account");
     }
 

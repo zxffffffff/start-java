@@ -8,8 +8,8 @@
 
 package com.zxffffffff.sample_db;
 
-import com.zxffffffff.sample_db.DO.ChatContactsAddDO;
-import com.zxffffffff.sample_db.DO.ChatContactsMessageDO;
+import com.zxffffffff.DO.ChatContactsAddDO;
+import com.zxffffffff.DO.ChatContactsMessageDO;
 import com.zxffffffff.sample_tools.BaseTools;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -40,9 +40,9 @@ chat_contacts
 */
 
 class AddContactTask implements Callable<Integer> {
-    ChatContactService sample;
+    ChatContactDAO sample;
 
-    public AddContactTask(ChatContactService sample) {
+    public AddContactTask(ChatContactDAO sample) {
         this.sample = sample;
     }
 
@@ -117,14 +117,22 @@ class AddContactTask implements Callable<Integer> {
 
         // setContactMessage
         List<ChatContactsMessageDO> listMessage = new ArrayList<>();
+        List<ChatContactsMessageDO> listMessage2 = new ArrayList<>();
         int msgSize = 10;
         for (int im = 0; im < msgSize; ++im) {
             String message = "message" + im;
+
             ChatContactsMessageDO messageDO = ChatContactsMessageDO.forSetText(user_id, contact_id, message);
             sample.setContactMessage(messageDO);
             listMessage.add(messageDO);
+
+            ChatContactsMessageDO messageDO2 = ChatContactsMessageDO.forSetText(contact_id, user_id, message);
+            sample.setContactMessage(messageDO2);
+            listMessage2.add(messageDO);
+            listMessage2.add(messageDO2);
         }
         Collections.reverse(listMessage);
+        Collections.reverse(listMessage2);
 
         // getContactMessage
         List<ChatContactsMessageDO> contactMessage = sample.getContactMessage(user_id, contact_id, 0, 100);
@@ -133,12 +141,19 @@ class AddContactTask implements Callable<Integer> {
             Assertions.assertEquals(contactMessage.get(im).msg_text(), listMessage.get(im).msg_text());
         }
 
+        // getContactMessage2
+        List<ChatContactsMessageDO> contactMessage2 = sample.getContactMessage2(user_id, contact_id, 0, 100);
+        Assertions.assertEquals(contactMessage2.size(), msgSize * 2);
+        for (int im = 0; im < msgSize; ++im) {
+            Assertions.assertEquals(contactMessage2.get(im).msg_text(), listMessage2.get(im).msg_text());
+        }
+
         return 123;
     }
 }
 
-public class ChatContactServiceTests {
-    ChatContactService sample = new ChatContactService("127.0.0.1", "root", "123456");
+public class ChatContactDAOTests {
+    ChatContactDAO sample = new ChatContactDAO("127.0.0.1", "root", "123456");
     ExecutorService threadPool = Executors.newFixedThreadPool(64);
 
     @Test

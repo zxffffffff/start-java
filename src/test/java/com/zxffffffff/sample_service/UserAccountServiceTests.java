@@ -6,16 +6,15 @@
  **
  ****************************************************************************/
 
-package com.zxffffffff.sample;
+package com.zxffffffff.sample_service;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class SampleApplicationTests {
-	SampleApplication application = new SampleApplication();
+public class UserAccountServiceTests {
+    public UserAccountService userAccountService = new UserAccountService();
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void test() {
+
+    }
 }
