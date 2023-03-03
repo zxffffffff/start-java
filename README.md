@@ -1,5 +1,5 @@
-# start-java-springboot
-一个 Spring Boot 脚手架项目，使用 Maven 构建
+# start-springcloud
+一个 Spring Cloud Alibaba 脚手架项目，使用 Maven 构建
 
 
 ## JDK
@@ -25,14 +25,15 @@
 
 ## Spring Boot
 - 参考：https://start.spring.io/
+- 可以快速创建 web 应用
+
+
+## Spring Cloud
+- 参考：https://github.com/alibaba/spring-cloud-alibaba
+- 已集成 Spring Cloud Alibaba 2022.x
 
 
 ## JDBC（Java DataBase Connectivity）
 - JDBC Interface 已内置 JDK 中，是一种标准接口
 - JDBC Driver 由数据库厂商实现，例如 MySQL Driver 由 Oracle 实现（引入 jar 包）
-
-
-## Jedis
-- 参考：https://github.com/redis/jedis
-- Redis 官方客户端，低级封装
 
