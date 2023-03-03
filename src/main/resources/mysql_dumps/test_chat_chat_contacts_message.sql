@@ -30,13 +30,13 @@ CREATE TABLE `chat_contacts_message` (
   `update_time` datetime NOT NULL,
   `user_id` bigint unsigned NOT NULL COMMENT '用户唯一id',
   `contact_user_id` bigint unsigned NOT NULL COMMENT '用户唯一id',
-  `msg_type` tinyint unsigned NOT NULL COMMENT '0=text, 1=file(text=filename), 2=link(text)',
+  `msg_type` tinyint unsigned NOT NULL COMMENT '消息类型 0=text, 1=file(text=filename), 2=link(text)',
   `msg_text` varchar(45) NOT NULL,
   `msg_file` blob NOT NULL,
   `is_recalled` tinyint unsigned NOT NULL DEFAULT '0' COMMENT '1=消息撤回',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='聊天信息，用户 M:N 联系人';
+) ENGINE=InnoDB AUTO_INCREMENT=641 DEFAULT CHARSET=utf8mb3 COMMENT='聊天信息，用户 M:N 联系人';
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +48,4 @@ CREATE TABLE `chat_contacts_message` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-02 15:23:46
+-- Dump completed on 2023-03-03  9:37:39

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -115,14 +116,22 @@ class AddContactTask implements Callable<Integer> {
         }
 
         // setContactMessage
-        String message1 = "message 1";
-        ChatContactsMessageDO messageDO1 = ChatContactsMessageDO.forSetText(user_id, contact_id, message1);
-        sample.setContactMessage(messageDO1);
+        List<ChatContactsMessageDO> listMessage = new ArrayList<>();
+        int msgSize = 10;
+        for (int im = 0; im < msgSize; ++im) {
+            String message = "message" + im;
+            ChatContactsMessageDO messageDO = ChatContactsMessageDO.forSetText(user_id, contact_id, message);
+            sample.setContactMessage(messageDO);
+            listMessage.add(messageDO);
+        }
+        Collections.reverse(listMessage);
 
         // getContactMessage
         List<ChatContactsMessageDO> contactMessage = sample.getContactMessage(user_id, contact_id, 0, 100);
-        Assertions.assertEquals(contactMessage.size(), 1);
-        Assertions.assertEquals(contactMessage.get(0).msg_text(), message1);
+        Assertions.assertEquals(contactMessage.size(), msgSize);
+        for (int im = 0; im < msgSize; ++im) {
+            Assertions.assertEquals(contactMessage.get(im).msg_text(), listMessage.get(im).msg_text());
+        }
 
         return 123;
     }
