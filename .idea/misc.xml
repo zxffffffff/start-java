@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/sample-main/pom.xml" />
         <option value="$PROJECT_DIR$/sample-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-cloud-alibaba/pom.xml" />
       </list>
     </option>
   </component>

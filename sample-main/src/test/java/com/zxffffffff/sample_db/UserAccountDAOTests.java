@@ -39,95 +39,95 @@ user_account_info
 
 */
 
-class SignupLoginTask implements Callable<Long> {
-    UserAccountDAO sample;
-    int i;
-
-    public SignupLoginTask(UserAccountDAO sample, int i) {
-        this.sample = sample;
-        this.i = i;
-    }
-
-    @Override
-    public Long call() {
-        assert (i < 1000);
-        String s = String.format("%04d", i);
-        String user_name = "zxffff" + s;
-        String user_email = "";
-        if (i % 2 == 0)
-            user_email = "zxffff" + s + "@qq.com";
-        String user_phone = "1300000" + s;
-        String pwd_md5 = BaseTools.Hash(s, "MD5");
-        String user_nickname = "nick" + s;
-        UserAccountInfoDO.Sex sex = UserAccountInfoDO.Sex.Undefined;
-        if (i % 3 == 1)
-            sex = UserAccountInfoDO.Sex.Male;
-        else if (i % 3 == 2)
-            sex = UserAccountInfoDO.Sex.Female;
-        int age = -1;
-        if (i % 3 == 0)
-            age = 20 + i;
-        String industry = "";
-        if (i % 3 == 1)
-            industry = "IT/互联网";
-        else if (i % 3 == 2)
-            industry = "土木";
-
-        UserAccountPwdDO pwdDO = UserAccountPwdDO.forSignup(user_name, user_email, user_phone, pwd_md5);
-        UserAccountInfoDO infoDO = UserAccountInfoDO.forSignup(user_nickname, sex, age, industry);
-
-        // signup
-        var id = sample.signup(pwdDO, infoDO);
-        Assertions.assertNotEquals(id, 0);
-        try {
-            sample.signup(pwdDO, infoDO);
-            Assertions.fail();
-        } catch (RuntimeException e) {
-            Assertions.assertTrue(true);
-        }
-
-        // login
-        var id2 = sample.login(user_name, pwd_md5);
-        Assertions.assertEquals(id2, id);
-        var id4 = sample.login(user_phone, pwd_md5);
-        Assertions.assertEquals(id4, id);
-        if (i % 2 == 0) {
-            var id3 = sample.login(user_email, pwd_md5);
-            Assertions.assertNotEquals(id3, 0);
-        }
-        try {
-            sample.login(user_name.replace('0', '1'), pwd_md5);
-            Assertions.fail();
-        } catch (RuntimeException e) {
-            Assertions.assertTrue(true);
-        }
-        try {
-            sample.login(user_phone.replace('0', '1'), pwd_md5);
-            Assertions.fail();
-        } catch (RuntimeException e) {
-            Assertions.assertTrue(true);
-        }
-        try {
-            sample.login(user_email.replace('0', '1'), pwd_md5);
-            Assertions.fail();
-        } catch (RuntimeException e) {
-            Assertions.assertTrue(true);
-        }
-
-        // getInfo
-        UserAccountInfoDO infoDO2 = sample.getInfo(id);
-        Assertions.assertEquals(infoDO.nickname(), infoDO2.nickname());
-        Assertions.assertEquals(infoDO.sex(), infoDO2.sex());
-        Assertions.assertEquals(infoDO.age(), infoDO2.age());
-        Assertions.assertEquals(infoDO.industry(), infoDO2.industry());
-
-        return id;
-    }
-}
-
 public class UserAccountDAOTests {
     UserAccountDAO sample = new UserAccountDAO("127.0.0.1", "root", "123456");
     ExecutorService threadPool = Executors.newFixedThreadPool(64);
+
+    class SignupLoginTask implements Callable<Long> {
+        UserAccountDAO sample;
+        int i;
+
+        public SignupLoginTask(UserAccountDAO sample, int i) {
+            this.sample = sample;
+            this.i = i;
+        }
+
+        @Override
+        public Long call() {
+            assert (i < 1000);
+            String s = String.format("%04d", i);
+            String user_name = "zxffff" + s;
+            String user_email = "";
+            if (i % 2 == 0)
+                user_email = "zxffff" + s + "@qq.com";
+            String user_phone = "1300000" + s;
+            String pwd_md5 = BaseTools.Hash(s, "MD5");
+            String user_nickname = "nick" + s;
+            UserAccountInfoDO.Sex sex = UserAccountInfoDO.Sex.Undefined;
+            if (i % 3 == 1)
+                sex = UserAccountInfoDO.Sex.Male;
+            else if (i % 3 == 2)
+                sex = UserAccountInfoDO.Sex.Female;
+            int age = -1;
+            if (i % 3 == 0)
+                age = 20 + i;
+            String industry = "";
+            if (i % 3 == 1)
+                industry = "IT/互联网";
+            else if (i % 3 == 2)
+                industry = "土木";
+
+            UserAccountPwdDO pwdDO = UserAccountPwdDO.forSignup(user_name, user_email, user_phone, pwd_md5);
+            UserAccountInfoDO infoDO = UserAccountInfoDO.forSignup(user_nickname, sex, age, industry);
+
+            // signup
+            var id = sample.signup(pwdDO, infoDO);
+            Assertions.assertNotEquals(id, 0);
+            try {
+                sample.signup(pwdDO, infoDO);
+                Assertions.fail();
+            } catch (RuntimeException e) {
+                Assertions.assertTrue(true);
+            }
+
+            // login
+            var id2 = sample.login(user_name, pwd_md5);
+            Assertions.assertEquals(id2, id);
+            var id4 = sample.login(user_phone, pwd_md5);
+            Assertions.assertEquals(id4, id);
+            if (i % 2 == 0) {
+                var id3 = sample.login(user_email, pwd_md5);
+                Assertions.assertNotEquals(id3, 0);
+            }
+            try {
+                sample.login(user_name.replace('0', '1'), pwd_md5);
+                Assertions.fail();
+            } catch (RuntimeException e) {
+                Assertions.assertTrue(true);
+            }
+            try {
+                sample.login(user_phone.replace('0', '1'), pwd_md5);
+                Assertions.fail();
+            } catch (RuntimeException e) {
+                Assertions.assertTrue(true);
+            }
+            try {
+                sample.login(user_email.replace('0', '1'), pwd_md5);
+                Assertions.fail();
+            } catch (RuntimeException e) {
+                Assertions.assertTrue(true);
+            }
+
+            // getInfo
+            UserAccountInfoDO infoDO2 = sample.getInfo(id);
+            Assertions.assertEquals(infoDO.nickname(), infoDO2.nickname());
+            Assertions.assertEquals(infoDO.sex(), infoDO2.sex());
+            Assertions.assertEquals(infoDO.age(), infoDO2.age());
+            Assertions.assertEquals(infoDO.industry(), infoDO2.industry());
+
+            return id;
+        }
+    }
 
     @Test
     void signupLoginTest() {

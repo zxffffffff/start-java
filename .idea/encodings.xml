@@ -1,9 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-build/4.0.0/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sample-main/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sample-main/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sample-utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sample-utils/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-coverage/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-dependencies/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-dependencies/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-docs/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-docs/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/integrated-example/integrated-account/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/integrated-example/integrated-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/integrated-example/integrated-frontend/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/integrated-example/integrated-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/integrated-example/integrated-order/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/integrated-example/integrated-praise-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/integrated-example/integrated-praise-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/integrated-example/integrated-storage/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-config-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-discovery-example/nacos-discovery-consumer-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-discovery-example/nacos-discovery-consumer-sclb-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-discovery-example/nacos-discovery-provider-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-discovery-example/nacos-discovery-spring-cloud-config-client-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-discovery-example/nacos-discovery-spring-cloud-config-server-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-discovery-example/nacos-reactivediscovery-consumer-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-discovery-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-discovery-example/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-gateway-example/nacos-gateway-discovery-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-gateway-example/nacos-gateway-provider-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-gateway-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/nacos-example/nacos-gateway-example/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/rocketmq-example/rocketmq-broadcast-example/rocketmq-broadcast-consumer1-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/rocketmq-example/rocketmq-broadcast-example/rocketmq-broadcast-consumer2-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/rocketmq-example/rocketmq-broadcast-example/rocketmq-broadcast-producer-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/rocketmq-example/rocketmq-comprehensive-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/rocketmq-example/rocketmq-delay-consume-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/rocketmq-example/rocketmq-example-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/rocketmq-example/rocketmq-orderly-consume-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/rocketmq-example/rocketmq-pollable-consume-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/rocketmq-example/rocketmq-sql-consume-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/rocketmq-example/rocketmq-tx-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/seata-example/account-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/seata-example/business-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/seata-example/order-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/seata-example/seata-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/seata-example/storage-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/sentinel-example/sentinel-circuitbreaker-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/sentinel-example/sentinel-core-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/sentinel-example/sentinel-openfeign-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/sentinel-example/sentinel-resttemplate-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/sentinel-example/sentinel-spring-cloud-gateway-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/sentinel-example/sentinel-webflux-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/spring-cloud-alibaba-sidecar-examples/spring-cloud-alibaba-sidecar-consul-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/spring-cloud-alibaba-sidecar-examples/spring-cloud-alibaba-sidecar-nacos-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/spring-cloud-bus-rocketmq-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-examples/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-alibaba-commons/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-alibaba-sentinel-datasource/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-alibaba-sentinel-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-circuitbreaker-sentinel/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-starter-alibaba-nacos-config/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-starter-alibaba-nacos-discovery/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-starter-alibaba-seata/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-starter-alibaba-sentinel/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-starter-alibaba-sidecar/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-starter-bus-rocketmq/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-starter-stream-rocketmq/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-tests/nacos-tests/nacos-config-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-tests/nacos-tests/nacos-discovery-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-tests/nacos-tests/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-tests/nacos-tests/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-tests/sentinel-tests/sentinel-degrade-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-tests/sentinel-tests/sentinel-flowcontrol-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-tests/sentinel-tests/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-tests/sentinel-tests/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-tests/spring-cloud-alibaba-test-support/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-tests/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-tests/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-alibaba/src/main/resources" charset="UTF-8" />
   </component>
 </project>

@@ -17,29 +17,30 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.*;
 
-class SnowFlakeTask implements Callable<Set<Long>> {
-    SnowFlake idWorker;
-    int size;
-
-    public SnowFlakeTask(SnowFlake idWorker, int size) {
-        this.idWorker = idWorker;
-        this.size = size;
-    }
-
-    @Override
-    public Set<Long> call() {
-        Set<Long> set = new HashSet<>();
-        for (int i = 0; i < size; i++) {
-            long id = idWorker.nextId();
-            set.add(id);
-        }
-        return set;
-    }
-}
-
 public class SnowFlakeTests {
     SnowFlake idWorker = new SnowFlake(0, 0);
     ExecutorService threadPool = Executors.newFixedThreadPool(64);
+
+
+    class SnowFlakeTask implements Callable<Set<Long>> {
+        SnowFlake idWorker;
+        int size;
+
+        public SnowFlakeTask(SnowFlake idWorker, int size) {
+            this.idWorker = idWorker;
+            this.size = size;
+        }
+
+        @Override
+        public Set<Long> call() {
+            Set<Long> set = new HashSet<>();
+            for (int i = 0; i < size; i++) {
+                long id = idWorker.nextId();
+                set.add(id);
+            }
+            return set;
+        }
+    }
 
     @Test
     void testSnowFlake() {
