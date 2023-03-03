@@ -66,7 +66,9 @@ public class BaseTools {
         return singleton().idWorker.nextId();
     }
 
-    /** 各种Hash算法
+    /**
+     * 各种Hash算法
+     *
      * @param strText 任意字符
      * @param strType "SHA-256" "SHA-512" "MD5" 等
      * @return byte[]转String

@@ -7,15 +7,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="sample_main" />
+        <module name="sample_utils" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="sample_main" target="17" />
+      <module name="sample_utils" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="sample_main" options="-parameters" />
+      <module name="sample_utils" options="-parameters" />
     </option>
   </component>
 </project>
