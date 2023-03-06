@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/sample-main/sample-main.iml" filepath="$PROJECT_DIR$/sample-main/sample-main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-utils/sample-utils.iml" filepath="$PROJECT_DIR$/sample-utils/sample-utils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-main/sample_main.iml" filepath="$PROJECT_DIR$/sample-main/sample_main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-utils/sample_utils.iml" filepath="$PROJECT_DIR$/sample-utils/sample_utils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-starter-bus-rocketmq/spring-cloud-starter-bus-rocketmq.iml" filepath="$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-starter-bus-rocketmq/spring-cloud-starter-bus-rocketmq.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/start-java-springboot.iml" filepath="$PROJECT_DIR$/.idea/start-java-springboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample-api/sample-api.iml" filepath="$PROJECT_DIR$/sample-api/sample-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample-dao/sample-dao.iml" filepath="$PROJECT_DIR$/sample-dao/sample-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample-manager/sample-manager.iml" filepath="$PROJECT_DIR$/sample-manager/sample-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample-service/sample-service.iml" filepath="$PROJECT_DIR$/sample-service/sample-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample-web/sample-web.iml" filepath="$PROJECT_DIR$/sample-web/sample-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/start/start.iml" filepath="$PROJECT_DIR$/start/start.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/start-springcloud.iml" filepath="$PROJECT_DIR$/.idea/start-springcloud.iml" />
     </modules>
   </component>
 </project>

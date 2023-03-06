@@ -7,161 +7,33 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="sample_utils" />
-        <module name="sample-main" />
-        <module name="sample_main" />
-        <module name="sample-utils" />
-        <module name="spring-cloud-starter-bus-rocketmq" />
+        <module name="start" />
+        <module name="sample-manager" />
+        <module name="sample-api" />
+        <module name="sample-dao" />
+        <module name="sample-service" />
+        <module name="sample-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="account-service" target="17" />
-      <module name="business-service" target="17" />
-      <module name="integrated-account" target="17" />
-      <module name="integrated-common" target="17" />
-      <module name="integrated-frontend" target="17" />
-      <module name="integrated-gateway" target="17" />
-      <module name="integrated-order" target="17" />
-      <module name="integrated-praise-consumer" target="17" />
-      <module name="integrated-praise-provider" target="17" />
-      <module name="integrated-storage" target="17" />
-      <module name="nacos-config-example" target="17" />
-      <module name="nacos-config-test" target="17" />
-      <module name="nacos-discovery-consumer-example" target="17" />
-      <module name="nacos-discovery-consumer-sclb-example" target="17" />
-      <module name="nacos-discovery-example" target="17" />
-      <module name="nacos-discovery-provider-example" target="17" />
-      <module name="nacos-discovery-spring-cloud-config-client-example" target="17" />
-      <module name="nacos-discovery-spring-cloud-config-server-example" target="17" />
-      <module name="nacos-discovery-test" target="17" />
-      <module name="nacos-gateway-discovery-example" target="17" />
-      <module name="nacos-gateway-example" target="17" />
-      <module name="nacos-gateway-provider-example" target="17" />
-      <module name="nacos-reactivediscovery-consumer-example" target="17" />
-      <module name="nacos-tests" target="17" />
-      <module name="order-service" target="17" />
-      <module name="rocketmq-broadcast-consumer1-example" target="17" />
-      <module name="rocketmq-broadcast-consumer2-example" target="17" />
-      <module name="rocketmq-broadcast-producer-example" target="17" />
-      <module name="rocketmq-comprehensive-example" target="17" />
-      <module name="rocketmq-delay-consume-example" target="17" />
-      <module name="rocketmq-example-common" target="17" />
-      <module name="rocketmq-orderly-consume-example" target="17" />
-      <module name="rocketmq-pollable-consume-example" target="17" />
-      <module name="rocketmq-sql-consume-example" target="17" />
-      <module name="rocketmq-tx-example" target="17" />
-      <module name="sample-main" target="17" />
-      <module name="sample-utils" target="17" />
-      <module name="sample_main" target="17" />
-      <module name="sample_utils" target="17" />
-      <module name="seata-server" target="1.8" />
-      <module name="sentinel-circuitbreaker-example" target="17" />
-      <module name="sentinel-core-example" target="17" />
-      <module name="sentinel-degrade-test" target="17" />
-      <module name="sentinel-flowcontrol-test" target="17" />
-      <module name="sentinel-openfeign-example" target="17" />
-      <module name="sentinel-resttemplate-example" target="17" />
-      <module name="sentinel-spring-cloud-gateway-example" target="17" />
-      <module name="sentinel-tests" target="17" />
-      <module name="sentinel-webflux-example" target="17" />
-      <module name="spring-cloud-alibaba" target="17" />
-      <module name="spring-cloud-alibaba-commons" target="17" />
-      <module name="spring-cloud-alibaba-coverage" target="17" />
-      <module name="spring-cloud-alibaba-dependencies" target="1.5" />
-      <module name="spring-cloud-alibaba-docs" target="17" />
-      <module name="spring-cloud-alibaba-examples" target="17" />
-      <module name="spring-cloud-alibaba-sentinel-datasource" target="17" />
-      <module name="spring-cloud-alibaba-sentinel-gateway" target="17" />
-      <module name="spring-cloud-alibaba-sidecar-consul-example" target="17" />
-      <module name="spring-cloud-alibaba-sidecar-nacos-example" target="17" />
-      <module name="spring-cloud-alibaba-starters" target="17" />
-      <module name="spring-cloud-alibaba-test-support" target="17" />
-      <module name="spring-cloud-alibaba-tests" target="17" />
-      <module name="spring-cloud-bus-rocketmq-example" target="17" />
-      <module name="spring-cloud-circuitbreaker-sentinel" target="17" />
-      <module name="spring-cloud-starter-alibaba-nacos-config" target="17" />
-      <module name="spring-cloud-starter-alibaba-nacos-discovery" target="17" />
-      <module name="spring-cloud-starter-alibaba-seata" target="17" />
-      <module name="spring-cloud-starter-alibaba-sentinel" target="17" />
-      <module name="spring-cloud-starter-alibaba-sidecar" target="17" />
-      <module name="spring-cloud-starter-bus-rocketmq" target="17" />
-      <module name="spring-cloud-starter-stream-rocketmq" target="17" />
-      <module name="storage-service" target="17" />
+      <module name="sample-api" target="11" />
+      <module name="sample-dao" target="11" />
+      <module name="sample-manager" target="11" />
+      <module name="sample-service" target="11" />
+      <module name="sample-web" target="11" />
+      <module name="start" target="1.8" />
+      <module name="start-springcloud" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="account-service" options="-parameters" />
-      <module name="business-service" options="-parameters" />
-      <module name="integrated-account" options="-parameters" />
-      <module name="integrated-common" options="-parameters" />
-      <module name="integrated-frontend" options="-parameters" />
-      <module name="integrated-gateway" options="-parameters" />
-      <module name="integrated-order" options="-parameters" />
-      <module name="integrated-praise-consumer" options="-parameters" />
-      <module name="integrated-praise-provider" options="-parameters" />
-      <module name="integrated-storage" options="-parameters" />
-      <module name="nacos-config-example" options="-parameters" />
-      <module name="nacos-config-test" options="-parameters" />
-      <module name="nacos-discovery-consumer-example" options="-parameters" />
-      <module name="nacos-discovery-consumer-sclb-example" options="-parameters" />
-      <module name="nacos-discovery-example" options="-parameters" />
-      <module name="nacos-discovery-provider-example" options="-parameters" />
-      <module name="nacos-discovery-spring-cloud-config-client-example" options="-parameters" />
-      <module name="nacos-discovery-spring-cloud-config-server-example" options="-parameters" />
-      <module name="nacos-discovery-test" options="-parameters" />
-      <module name="nacos-gateway-discovery-example" options="-parameters" />
-      <module name="nacos-gateway-example" options="-parameters" />
-      <module name="nacos-gateway-provider-example" options="-parameters" />
-      <module name="nacos-reactivediscovery-consumer-example" options="-parameters" />
-      <module name="nacos-tests" options="-parameters" />
-      <module name="order-service" options="-parameters" />
-      <module name="rocketmq-broadcast-consumer1-example" options="-parameters" />
-      <module name="rocketmq-broadcast-consumer2-example" options="-parameters" />
-      <module name="rocketmq-broadcast-producer-example" options="-parameters" />
-      <module name="rocketmq-comprehensive-example" options="-parameters" />
-      <module name="rocketmq-delay-consume-example" options="-parameters" />
-      <module name="rocketmq-example-common" options="-parameters" />
-      <module name="rocketmq-orderly-consume-example" options="-parameters" />
-      <module name="rocketmq-pollable-consume-example" options="-parameters" />
-      <module name="rocketmq-sql-consume-example" options="-parameters" />
-      <module name="rocketmq-tx-example" options="-parameters" />
-      <module name="sample-main" options="-parameters" />
-      <module name="sample-utils" options="-parameters" />
-      <module name="sample_main" options="-parameters" />
-      <module name="sample_utils" options="-parameters" />
-      <module name="seata-server" options="-parameters" />
-      <module name="sentinel-circuitbreaker-example" options="-parameters" />
-      <module name="sentinel-core-example" options="-parameters" />
-      <module name="sentinel-degrade-test" options="-parameters" />
-      <module name="sentinel-flowcontrol-test" options="-parameters" />
-      <module name="sentinel-openfeign-example" options="-parameters" />
-      <module name="sentinel-resttemplate-example" options="-parameters" />
-      <module name="sentinel-spring-cloud-gateway-example" options="-parameters" />
-      <module name="sentinel-tests" options="-parameters" />
-      <module name="sentinel-webflux-example" options="-parameters" />
-      <module name="spring-cloud-alibaba" options="-parameters" />
-      <module name="spring-cloud-alibaba-commons" options="-parameters" />
-      <module name="spring-cloud-alibaba-coverage" options="-parameters" />
-      <module name="spring-cloud-alibaba-docs" options="-parameters" />
-      <module name="spring-cloud-alibaba-examples" options="-parameters" />
-      <module name="spring-cloud-alibaba-sentinel-datasource" options="-parameters" />
-      <module name="spring-cloud-alibaba-sentinel-gateway" options="-parameters" />
-      <module name="spring-cloud-alibaba-sidecar-consul-example" options="-parameters" />
-      <module name="spring-cloud-alibaba-sidecar-nacos-example" options="-parameters" />
-      <module name="spring-cloud-alibaba-starters" options="-parameters" />
-      <module name="spring-cloud-alibaba-test-support" options="-parameters" />
-      <module name="spring-cloud-alibaba-tests" options="-parameters" />
-      <module name="spring-cloud-bus-rocketmq-example" options="-parameters" />
-      <module name="spring-cloud-circuitbreaker-sentinel" options="-parameters" />
-      <module name="spring-cloud-starter-alibaba-nacos-config" options="-parameters" />
-      <module name="spring-cloud-starter-alibaba-nacos-discovery" options="-parameters" />
-      <module name="spring-cloud-starter-alibaba-seata" options="-parameters" />
-      <module name="spring-cloud-starter-alibaba-sentinel" options="-parameters" />
-      <module name="spring-cloud-starter-alibaba-sidecar" options="-parameters" />
-      <module name="spring-cloud-starter-bus-rocketmq" options="-parameters" />
-      <module name="spring-cloud-starter-stream-rocketmq" options="-parameters" />
-      <module name="storage-service" options="-parameters" />
+      <module name="sample-api" options="-parameters" />
+      <module name="sample-dao" options="-parameters" />
+      <module name="sample-manager" options="-parameters" />
+      <module name="sample-service" options="-parameters" />
+      <module name="sample-web" options="-parameters" />
+      <module name="start" options="-parameters" />
+      <module name="start-springcloud" options="-parameters" />
     </option>
   </component>
 </project>

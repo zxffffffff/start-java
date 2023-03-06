@@ -3,17 +3,9 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/sample-main/pom.xml" />
-        <option value="$PROJECT_DIR$/sample-utils/pom.xml" />
-        <option value="$PROJECT_DIR$/spring-cloud-alibaba/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/spring-cloud-alibaba/pom.xml" />
-        <option value="$PROJECT_DIR$/spring-cloud-alibaba/spring-cloud-alibaba-starters/spring-cloud-starter-bus-rocketmq/pom.xml" />
-      </set>
-    </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="17" project-jdk-type="JavaSDK" />
 </project>
