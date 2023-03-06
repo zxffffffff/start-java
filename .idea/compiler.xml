@@ -7,65 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="nacos-discovery-spring-cloud-config-client-example" />
-        <module name="integrated-order" />
-        <module name="rocketmq-example-common" />
-        <module name="nacos-discovery-consumer-example" />
-        <module name="spring-cloud-alibaba-test-support" />
-        <module name="rocketmq-broadcast-consumer1-example" />
-        <module name="business-service" />
-        <module name="spring-cloud-alibaba-sidecar-nacos-example" />
-        <module name="spring-cloud-starter-alibaba-seata" />
-        <module name="integrated-common" />
-        <module name="rocketmq-sql-consume-example" />
-        <module name="spring-cloud-circuitbreaker-sentinel" />
-        <module name="spring-cloud-alibaba-coverage" />
-        <module name="nacos-discovery-provider-example" />
-        <module name="spring-cloud-alibaba-sentinel-gateway" />
-        <module name="account-service" />
         <module name="sample_utils" />
-        <module name="seata-server" />
-        <module name="sentinel-resttemplate-example" />
-        <module name="rocketmq-broadcast-producer-example" />
-        <module name="nacos-reactivediscovery-consumer-example" />
-        <module name="integrated-account" />
-        <module name="rocketmq-comprehensive-example" />
+        <module name="sample-main" />
         <module name="sample_main" />
-        <module name="spring-cloud-alibaba-sentinel-datasource" />
-        <module name="order-service" />
-        <module name="spring-cloud-starter-alibaba-sentinel" />
-        <module name="sentinel-degrade-test" />
-        <module name="spring-cloud-starter-stream-rocketmq" />
-        <module name="nacos-config-test" />
-        <module name="rocketmq-tx-example" />
-        <module name="nacos-discovery-consumer-sclb-example" />
-        <module name="rocketmq-pollable-consume-example" />
-        <module name="nacos-discovery-test" />
-        <module name="spring-cloud-starter-alibaba-nacos-config" />
-        <module name="nacos-gateway-discovery-example" />
-        <module name="sentinel-spring-cloud-gateway-example" />
-        <module name="spring-cloud-starter-alibaba-nacos-discovery" />
-        <module name="integrated-gateway" />
-        <module name="spring-cloud-bus-rocketmq-example" />
-        <module name="nacos-gateway-provider-example" />
-        <module name="rocketmq-broadcast-consumer2-example" />
-        <module name="spring-cloud-starter-alibaba-sidecar" />
-        <module name="sentinel-flowcontrol-test" />
-        <module name="rocketmq-orderly-consume-example" />
-        <module name="nacos-discovery-spring-cloud-config-server-example" />
-        <module name="spring-cloud-alibaba-sidecar-consul-example" />
-        <module name="integrated-praise-provider" />
-        <module name="sentinel-circuitbreaker-example" />
-        <module name="integrated-frontend" />
-        <module name="storage-service" />
-        <module name="sentinel-core-example" />
-        <module name="spring-cloud-alibaba-commons" />
-        <module name="nacos-config-example" />
-        <module name="sentinel-webflux-example" />
-        <module name="sentinel-openfeign-example" />
-        <module name="rocketmq-delay-consume-example" />
-        <module name="integrated-storage" />
-        <module name="integrated-praise-consumer" />
+        <module name="sample-utils" />
         <module name="spring-cloud-starter-bus-rocketmq" />
       </profile>
     </annotationProcessing>
@@ -105,6 +50,8 @@
       <module name="rocketmq-pollable-consume-example" target="17" />
       <module name="rocketmq-sql-consume-example" target="17" />
       <module name="rocketmq-tx-example" target="17" />
+      <module name="sample-main" target="17" />
+      <module name="sample-utils" target="17" />
       <module name="sample_main" target="17" />
       <module name="sample_utils" target="17" />
       <module name="seata-server" target="1.8" />
@@ -179,6 +126,8 @@
       <module name="rocketmq-pollable-consume-example" options="-parameters" />
       <module name="rocketmq-sql-consume-example" options="-parameters" />
       <module name="rocketmq-tx-example" options="-parameters" />
+      <module name="sample-main" options="-parameters" />
+      <module name="sample-utils" options="-parameters" />
       <module name="sample_main" options="-parameters" />
       <module name="sample_utils" options="-parameters" />
       <module name="seata-server" options="-parameters" />

@@ -2,6 +2,12 @@
 一个 Spring Cloud Alibaba 脚手架项目，使用 Maven 构建
 
 
+## Docker
+- `mysql`：设置root密码 `MYSQL_ROOT_PASSWORD=123456`
+- `redis`：默认无密码
+- `nacos/nacos-server`： 设置模式 `MODE=standalone`，默认账号密码 `nacos`
+
+
 ## JDK
 - 安装 OpenJDK 并配置环境变量：https://openjdk.org/
 
