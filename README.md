@@ -2,15 +2,19 @@
 一个 Spring Cloud Alibaba 脚手架项目，使用 Maven 构建
 
 
-## JDK 8/11/17
+## 命名规范
+![image](https://github.com/zxffffffff/start-java/blob/main/doc/architecture.png)
+
+
+## JDK 17（占有率11超过了8）
 - 下载（微软 build）：https://learn.microsoft.com/zh-cn/java/openjdk/download
-- 目前 11 占有率最高，超过 8
 - 配置环境变量：`JAVA_HOME`，`Path`
 
 
 ## Maven
 - IDEA 自带 Maven，也可以手动下载并配置环境变量：https://maven.apache.org/download.cgi
 - 查找 Maven 包：https://central.sonatype.com/
+- 配置设置：项目右键-Maven-`settings.xml`
 - 配置阿里源（重要） `settings.xml` `<mirror>`
 ```xml
 <!-- 阿里云仓库 -->
@@ -26,8 +30,7 @@
 
 
 ## Spring Boot/Cloud
-- Spring Cloud Alibaba：https://github.com/alibaba/spring-cloud-alibaba.git
-- Nepxion Discovery：https://github.com/Nepxion/Discovery.git
+- 版本说明：https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E
 - spring脚手架：https://start.spring.io/
 - 阿里巴巴脚手架：https://start.aliyun.com/
 
