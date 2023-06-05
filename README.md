@@ -4,6 +4,7 @@
 
 ## JDK 8/11/17
 - 下载（微软 build）：https://learn.microsoft.com/zh-cn/java/openjdk/download
+- 目前 11 占有率最高，超过 8
 - 配置环境变量：`JAVA_HOME`，`Path`
 
 
@@ -25,6 +26,8 @@
 
 
 ## Spring Boot/Cloud
+- Spring Cloud Alibaba：https://github.com/alibaba/spring-cloud-alibaba.git
+- Nepxion Discovery：https://github.com/Nepxion/Discovery.git
 - spring脚手架：https://start.spring.io/
 - 阿里巴巴脚手架：https://start.aliyun.com/
 
