@@ -2,7 +2,7 @@
 一个 Spring Cloud Alibaba 脚手架项目，使用 Maven 构建
 
 
-## 命名规范
+## 结构规范
 ![image](https://github.com/zxffffffff/start-java/blob/main/doc/architecture.png)
 
 
